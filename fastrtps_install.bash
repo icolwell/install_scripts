@@ -1,0 +1,32 @@
+#!/bin/bash
+set -e
+
+VERSION="1.6.0"
+LIB_DIR="/usr/local/lib"
+
+if [ -e "$LIB_DIR/libfastrtps.so.$VERSION" ] && [ $(readlink $LIB_DIR/libfastrtps.so -f) == "$LIB_DIR/libfastrtps.so.$VERSION" ]; then
+    echo "FastRTPS $VERSION is already installed."
+    exit
+fi
+
+# Gradle is needed to build fastrtpsgen
+sudo apt -y install gradle
+
+# TODO: install previous release without git
+# URL="https://github.com/eProsima/Fast-RTPS/archive/v$VERSION.tar.gz"
+TEMP_DIR=$(mktemp -d)
+cd "$TEMP_DIR"
+
+# wget "$URL"
+# tar -xzf "v$VERSION.tar.gz"
+git clone https://github.com/eProsima/Fast-RTPS
+
+# cd "Fast-RTPS-$VERSION"
+cd Fast-RTPS
+git checkout "v$VERSION"
+
+mkdir build && cd build
+
+cmake -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
+make
+sudo make install
