@@ -17,7 +17,7 @@ install()
     # Setup users and permissions
     id -u node_exporter &>/dev/null || sudo useradd --no-create-home --shell /bin/false node_exporter
 
-    # Download and install prometheus binary
+    # Download and install binary
     cd "$TEMP_DIR"
     echo "Downloading node_exporter version $VERSION ..."
     wget -q --show-progress "https://github.com/prometheus/node_exporter/releases/download/v$VERSION/$ARCHIVE"
