@@ -8,12 +8,12 @@ set -e
 VERSION="3.8.3"
 SHA256="a7a39ff7c5092564a7d22f86cfcb747bad30b8c4d8bef30b518eded1f91cba43"
 
-FOLDER="ddclient-$VERSION"
-ARCHIVE="$FOLDER.tar.gz"
-TEMP_DIR=$(mktemp -d)
-
 install()
 {
+    FOLDER="ddclient-$VERSION"
+    ARCHIVE="v$VERSION.tar.gz"
+    TEMP_DIR=$(mktemp -d)
+
     echo "Installing dependencies ..."
     sudo apt-get -y install perl libdata-validate-ip-perl
 
@@ -33,7 +33,6 @@ install()
     sudo cp "$FOLDER/ddclient" /usr/sbin/
     sudo mkdir -p /etc/ddclient
     sudo mkdir -p /var/cache/ddclient
-    rm -rf "$FOLDER"
 
     # Setup service
     sudo cp "$FOLDER/sample-etc_rc.d_init.d_ddclient.ubuntu" /etc/init.d/ddclient
@@ -52,14 +51,14 @@ uninstall()
     echo "Uninstalling ddclient ..."
 
     # Remove service
-    sudo service ddclient stop
-    sudo service ddlcient disable
-    sudo rm /etc/init.d/ddclient
+    sudo service ddclient stop || true
+    #sudo service ddclient disable
+    sudo rm -f /etc/init.d/ddclient
     sudo systemctl daemon-reload
     sudo systemctl reset-failed
 
     # Uninstall
-    sudo rm /usr/sbin/ddclient
+    sudo rm -f /usr/sbin/ddclient
 
     echo "ddclient uninstalled"
 }
@@ -70,7 +69,9 @@ purge()
 
     # Remove configs
     sudo rm -rf /etc/ddclient
-    suod rm -rf /var/cache/ddclient
+    sudo rm -rf /var/cache/ddclient
+
+    echo "ddclient configs purged"
 }
 
 sudo -v
