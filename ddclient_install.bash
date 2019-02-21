@@ -3,19 +3,24 @@ set -e
 
 # This script is based off of the README found here:
 # https://github.com/ddclient/ddclient
-# this script only installs ddclient version 3.8.3
-
-VERSION="3.8.3"
-SHA256="a7a39ff7c5092564a7d22f86cfcb747bad30b8c4d8bef30b518eded1f91cba43"
 
 install()
 {
+    sudo -v
+
+    : "${VERSION:="3.8.3"}"
+    if [ "$VERSION" == "3.9.0" ]; then
+        SHA256="9c4ae902742e8a37790d3cc8fad4e5b0f38154c76bba3643f4423d8f96829e3b"
+    else
+        SHA256="a7a39ff7c5092564a7d22f86cfcb747bad30b8c4d8bef30b518eded1f91cba43"
+    fi
+
     FOLDER="ddclient-$VERSION"
     ARCHIVE="v$VERSION.tar.gz"
     TEMP_DIR=$(mktemp -d)
 
     echo "Installing dependencies ..."
-    sudo apt-get -y install perl libdata-validate-ip-perl
+    sudo apt-get -qq install perl libdata-validate-ip-perl
 
     # Download and install binary
     cd "$TEMP_DIR"
@@ -29,6 +34,11 @@ install()
     fi
 
     tar -xzf "$ARCHIVE"
+
+    # Patch
+    if [ "$VERSION" == "3.9.0" ]; then
+        patch_file
+    fi
 
     sudo cp "$FOLDER/ddclient" /usr/sbin/
     sudo mkdir -p /etc/ddclient
@@ -48,11 +58,11 @@ install()
 
 uninstall()
 {
+    sudo -v
     echo "Uninstalling ddclient ..."
 
     # Remove service
     sudo service ddclient stop || true
-    #sudo service ddclient disable
     sudo rm -f /etc/init.d/ddclient
     sudo systemctl daemon-reload
     sudo systemctl reset-failed
@@ -74,12 +84,32 @@ purge()
     echo "ddclient configs purged"
 }
 
-sudo -v
+patch_file()
+{
+    cd "$FOLDER"
+    echo "Patching ..."
+
+    # Download patch
+    wget -q "https://raw.githubusercontent.com/icolwell/install_scripts/master/ddclient-3.9.0.patch"
+
+    sudo apt-get -qq install patch
+    patch < ddclient-3.9.0.patch
+    cd ..
+}
+
 case "$1" in
     "-u")
         uninstall;;
     "-p")
         purge;;
+    "-v")
+        if [ -n "$2" ]; then
+            VERSION="$2"
+        else
+            echo "Provide the version number"
+            exit
+        fi
+        install;;
     *)
         install;;
 esac
