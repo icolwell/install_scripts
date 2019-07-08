@@ -9,4 +9,6 @@ sudo apt update -qq
 
 sudo apt -y install docker-ce
 
+sudo usermod -a -G docker $USER
+
 echo "Done :D"
