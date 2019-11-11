@@ -10,4 +10,8 @@ sudo apt update -qq
 
 sudo apt -y install syncthing
 
+# https://docs.syncthing.net/users/faq.html#how-do-i-increase-the-inotify-limit-to-get-my-filesystem-watcher-to-work
+echo "fs.inotify.max_user_watches=204800" | sudo tee -a /etc/sysctl.conf
+sudo sh -c 'echo 204800 > /proc/sys/fs/inotify/max_user_watches'
+
 echo "Done :D"
