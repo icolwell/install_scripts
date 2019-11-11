@@ -9,6 +9,8 @@ case $UBUNTU_CODENAME in
         ROS_DISTRO=lunar;;
     xenial)
         ROS_DISTRO=kinetic;;
+    bionic)
+        ROS_DISTRO=melodic;;
     *)
         echo "Unable to match Ubuntu release (named $UBUNTU_CODENAME) to a ROS version"
     exit 1
@@ -31,3 +33,5 @@ if [ ! -d /etc/ros/rosdep ]; then
     sudo rosdep init > /dev/null
 fi
 rosdep update > /dev/null
+
+echo "ROS Installed Successfully."
