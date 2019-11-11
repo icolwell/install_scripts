@@ -1,11 +1,15 @@
 #!/bin/bash
 set -e
 
-sudo add-apt-repository -y ppa:webupd8team/atom
+# https://flight-manual.atom.io/getting-started/sections/installing-atom/#installing-atom-on-linux
 
-echo "Updating package lists ..."
-sudo apt update -qq
+echo "Installing Atom ..."
 
-sudo apt -y install atom
+wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
 
-echo "Done :D"
+sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+sudo apt-get update -qq
+
+sudo apt-get -y install atom
+
+echo "Atom Installed."
