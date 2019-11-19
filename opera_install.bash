@@ -1,13 +1,16 @@
 #!/bin/bash
 set -e
 
-# Opera
-wget -O - http://deb.opera.com/archive.key | sudo apt-key add -
+# References:
+# https://askubuntu.com/a/1148025/688415
+
+echo "Installing Opera ..."
+
+wget -qO - http://deb.opera.com/archive.key | sudo apt-key add -
 echo 'deb https://deb.opera.com/opera-stable/ stable non-free' | sudo tee /etc/apt/sources.list.d/opera-stable.list
+sudo apt-get -qq update
 
-echo "Updating package lists ..."
-sudo apt update -qq
+sudo apt-get -y install opera-stable chromium-codecs-ffmpeg-extra
+sudo ln -sf /usr/lib/chromium-browser/libffmpeg.so /usr/lib/x86_64-linux-gnu/opera/libffmpeg.so
 
-sudo apt -y install opera-stable
-
-echo "Done :D"
+echo "Opera installed successfully"
