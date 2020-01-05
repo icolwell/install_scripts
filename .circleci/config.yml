@@ -1,10 +1,15 @@
 version: 2
 jobs:
-  build:
+  xenial_testing:
     docker:
-      - image: iancolwell/xenial_desktop:latest
-        environment:
-          CONTINUOUS_INTEGRATION: TRUE
+      - image: iancolwell/xenial_user:latest
+    steps:
+      - checkout
+      - run: bash opera_install.bash
+
+  bionic_testing:
+    docker:
+      - image: iancolwell/bionic_user:latest
     steps:
       - checkout
       - run: bash opera_install.bash
