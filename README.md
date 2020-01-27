@@ -9,9 +9,9 @@ only tested them on Ubuntu 16.04.
 # Using the Scripts
 
 There is no need to clone this repo locally, the scripts can be ran as long as
-an internet connection exists. Below is an example of running the ROS install
+an internet connection exists. Below is an example of running the Opera browser install
 script.
 
 ```
-curl -sSL https://raw.githubusercontent.com/icolwell/install_scripts/master/ros_install.bash | bash
+curl -sSL https://raw.githubusercontent.com/icolwell/install_scripts/master/opera_install.bash | bash
 ```
