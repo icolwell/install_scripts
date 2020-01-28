@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  xenial_testing:
+  build:
     docker:
       - image: iancolwell/ubuntu:xenial_user
     steps:
