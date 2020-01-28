@@ -2,14 +2,14 @@ version: 2
 jobs:
   xenial_testing:
     docker:
-      - image: iancolwell/xenial_user:latest
+      - image: iancolwell/ubuntu:xenial_user
     steps:
       - checkout
       - run: bash opera_install.bash
 
   bionic_testing:
     docker:
-      - image: iancolwell/bionic_user:latest
+      - image: iancolwell/ubuntu:bionic_user
     steps:
       - checkout
       - run: bash opera_install.bash
