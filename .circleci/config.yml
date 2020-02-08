@@ -18,9 +18,7 @@ jobs:
 
 workflows:
   version: 2
-  xenial_testing:
+  ubuntu_testing:
     jobs:
       - xenial_desktop-testing
-  bionic_testing:
-    jobs:
       - bionic_desktop-testing
