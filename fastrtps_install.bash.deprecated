@@ -10,7 +10,7 @@ if [ -e "$LIB_DIR/libfastrtps.so.$VERSION" ] && [ $(readlink $LIB_DIR/libfastrtp
 fi
 
 # Gradle is needed to build fastrtpsgen
-sudo apt -y install gradle
+sudo apt-get -y install gradle cmake gcc g++
 
 # TODO: install previous release without git
 # URL="https://github.com/eProsima/Fast-RTPS/archive/v$VERSION.tar.gz"

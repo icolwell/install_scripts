@@ -6,7 +6,8 @@ set -e
 
 install()
 {
-    sudo -v
+    # Hack for "sudo -v" in docker container
+    sudo echo -n
 
     : "${VERSION:="3.8.3"}"
     if [ "$VERSION" == "3.9.0" ]; then
