@@ -3,7 +3,7 @@
 [![CircleCI](https://circleci.com/gh/icolwell/install_scripts.svg?style=shield)](https://circleci.com/gh/icolwell/install_scripts)
 
 This repo contains a collection of install scripts I have created over the years
-to install software that is not easily installed via `apt install`.
+to install software that is not easily installed via `apt install` using default apt sources.
 The scripts are meant to be used on the latest "stable"
 [LTS](https://wiki.ubuntu.com/LTS) release of Ubuntu.
 However, currently I've only tested them on Ubuntu 18.04 and 16.04.
