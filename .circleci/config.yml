@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  xenial_desktop-testing:
+    docker:
+      - image: iancolwell/ubuntu:xenial_desktop
+    steps:
+      - run: sudo apt-get -y install git openssh-client
+      - checkout
+      - run: bash .circleci/ci_test.bash
+
+  bionic_desktop-testing:
+    docker:
+      - image: iancolwell/ubuntu:bionic_desktop
+    steps:
+      - run: sudo apt-get -y install git openssh-client
+      - checkout
+      - run: bash .circleci/ci_test.bash
+
+workflows:
+  version: 2
+  ubuntu_testing:
+    jobs:
+      - xenial_desktop-testing
+      - bionic_desktop-testing

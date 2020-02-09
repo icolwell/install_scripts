@@ -84,11 +84,11 @@ uninstall()
     echo "Prometheus uninstalled"
 }
 
-sudo -v
+# Hack for sudo -v in docker containers
+sudo echo -n
+
 if [ "$1" == '-u' ]; then
     uninstall
 else
     install
 fi
-
-

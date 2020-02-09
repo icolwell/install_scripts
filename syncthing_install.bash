@@ -10,8 +10,17 @@ sudo apt update -qq
 
 sudo apt -y install syncthing
 
+# Adjust inotify for filesystem watching
 # https://docs.syncthing.net/users/faq.html#how-do-i-increase-the-inotify-limit-to-get-my-filesystem-watcher-to-work
-echo "fs.inotify.max_user_watches=204800" | sudo tee -a /etc/sysctl.conf
-sudo sh -c 'echo 204800 > /proc/sys/fs/inotify/max_user_watches'
+SYS_FILE="/etc/sysctl.conf"
+SYS_STRING="fs.inotify.max_user_watches=204800"
+if grep -q "$SYS_STRING" "$SYS_FILE"; then
+	sudo sh -c "echo $SYS_STRING >> $SYS_FILE"
+fi
+
+INOTIFY_FILE="/proc/sys/fs/inotify/max_user_watches"
+if [ -w "$INOTIFY_FILE" ]; then
+	sudo sh -c "echo 204800 > $INOTIFY_FILE"
+fi
 
 echo "Done :D"
