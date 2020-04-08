@@ -23,7 +23,7 @@ echo "Updating package lists ..."
 sudo apt-get -qq update
 
 echo "Installing ROS $ROS_DISTRO ..."
-sudo apt-get -qq install ros-$ROS_DISTRO-desktop python-rosinstall > /dev/null
+sudo apt-get -qq install ros-$ROS_DISTRO-desktop python-rosinstall python-rosdep > /dev/null
 
 source /opt/ros/$ROS_DISTRO/setup.bash
 
