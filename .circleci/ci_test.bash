@@ -7,6 +7,7 @@ prometheus_install.bash
 prometheus_apache_exporter_install.bash
 prometheus_node_exporter_install.bash
 slack_install.bash
+opera_install.bash
 )
 
 main()
