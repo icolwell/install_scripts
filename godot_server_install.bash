@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="3.2.1"
+VERSION=${1:-'3.2.3'}
 FILENAME="Godot_v$VERSION-stable_linux_server.64"
 URL="https://downloads.tuxfamily.org/godotengine/$VERSION/$FILENAME.zip"
 INSTALL_DIR="$HOME/opt/godot-$VERSION"
