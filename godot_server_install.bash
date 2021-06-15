@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION=${1:-'3.2.3'}
+VERSION=${1:-'3.3.2'}
 FILENAME="Godot_v$VERSION-stable_linux_server.64"
 URL="https://downloads.tuxfamily.org/godotengine/$VERSION/$FILENAME.zip"
 INSTALL_DIR="$HOME/opt/godot-$VERSION"
@@ -14,7 +14,8 @@ wget --quiet --show-progress "$URL" -O godot.zip
 mkdir -p "$INSTALL_DIR"
 mkdir -p "$HOME/bin"
 unzip -o godot.zip -d "$INSTALL_DIR"
-ln -sf "$INSTALL_DIR/$FILENAME" "$HOME/bin/godot-server"
+ln -sf "$INSTALL_DIR/$FILENAME" "$HOME/bin/godot-server-$VERSION"
+ln -sf "$HOME/bin/godot-server-$VERSION" "$HOME/bin/godot-server"
 
 echo "Godot Server installed to:"
 echo "$INSTALL_DIR"
