@@ -12,7 +12,7 @@ jobs:
     docker:
       - image: iancolwell/ubuntu:bionic_desktop
     steps:
-      - run: sudo apt-get -y install git openssh-client
+      - run: sudo apt-get update && sudo apt-get -y install git openssh-client
       - checkout
       - run: bash .circleci/ci_test.bash
 
