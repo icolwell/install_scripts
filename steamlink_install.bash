@@ -13,6 +13,9 @@ fi
 # Install steamlink
 sudo apt-get -y install steamlink
 
+# Run steamlink at least once for setup prompts
+steamlink
+
 # Missing dependencies
 sudo apt-get -y install libgles2:armhf libegl1:armhf libgl1-mesa-glx:armhf libsndio7.0:armhf libavcodec58:armhf
 
