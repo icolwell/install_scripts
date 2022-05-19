@@ -20,18 +20,13 @@ steamlink
 sudo apt-get -y install libgles2:armhf libegl1:armhf libgl1-mesa-glx:armhf libsndio7.0:armhf libavcodec58:armhf
 
 # Symlink library versions
-LIBRARY_DIR="/lib/arm-linux-gnueabihf"
-cd "$LIBRARY_DIR"
+cd "/lib/arm-linux-gnueabihf"
 
 sudo ln -s libbcm_host.so.0 libbcm_host.so
 sudo ln -s libvcsm.so.0 libvcsm.so
 sudo ln -s libmmal.so.0 libmmal.so
 sudo ln -s libmmal_core.so.0 libmmal_core.so
 sudo ln -s libmmal_util.so.0 libmmal_util.so
-
-# TODO: Change to fkms driver
-
-# TODO: Add HDMI audio output
 
 echo ""
 echo "Steamlink installed :)"
