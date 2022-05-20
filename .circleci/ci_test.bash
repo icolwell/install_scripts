@@ -3,11 +3,12 @@ set -e
 
 EXCLUDE_SCRIPTS=(
 nvidia_driver_install.bash
-prometheus_install.bash
+opera_install.bash
 prometheus_apache_exporter_install.bash
+prometheus_install.bash
 prometheus_node_exporter_install.bash
 slack_install.bash
-opera_install.bash
+steamlink_install.bash
 )
 
 main()
