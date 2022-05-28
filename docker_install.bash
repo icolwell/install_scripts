@@ -2,17 +2,21 @@
 set -e
 
 # Docker
-
-sudo apt-get -y install wget
-
-wget -qO - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+# https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 
 echo "Updating package lists ..."
-sudo apt update -qq
+sudo apt-get -qq update
+sudo apt-get -y install ca-certificates curl gnupg lsb-release
 
-sudo apt -y install docker-ce
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --yes --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+    | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get -qq update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 sudo usermod -a -G docker $USER
 
-echo "Done :D"
+echo "Docker Installed :D"
