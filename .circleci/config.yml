@@ -1,13 +1,5 @@
 version: 2
 jobs:
-  xenial_desktop-testing:
-    docker:
-      - image: iancolwell/ubuntu:xenial_desktop
-    steps:
-      - run: sudo apt-get update && sudo apt-get -y install git openssh-client
-      - checkout
-      - run: bash .circleci/ci_test.bash
-
   bionic_desktop-testing:
     docker:
       - image: iancolwell/ubuntu:bionic_desktop
@@ -24,10 +16,18 @@ jobs:
       - checkout
       - run: bash .circleci/ci_test.bash
 
+  jammy_desktop-testing:
+    docker:
+      - image: iancolwell/ubuntu:jammy_desktop
+    steps:
+      - run: sudo apt-get update && sudo apt-get -y install git openssh-client
+      - checkout
+      - run: bash .circleci/ci_test.bash
+
 workflows:
   version: 2
   ubuntu_testing:
     jobs:
-      - xenial_desktop-testing
       - bionic_desktop-testing
       - focal_desktop-testing
+      - jammy_desktop-testing
