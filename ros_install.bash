@@ -16,7 +16,7 @@ case $UBUNTU_CODENAME in
         ROS_DISTRO=noetic;;
     *)
         echo "Unable to match Ubuntu release (named $UBUNTU_CODENAME) to a ROS version"
-    exit 1
+    exit 0
 esac
 
 sudo sh -c "echo \"deb http://packages.ros.org/ros/ubuntu $UBUNTU_CODENAME main\" > /etc/apt/sources.list.d/ros-latest.list"

@@ -2,6 +2,7 @@
 set -e
 
 EXCLUDE_SCRIPTS=(
+docker_install.bash
 nvidia_driver_install.bash
 opera_install.bash
 prometheus_apache_exporter_install.bash
