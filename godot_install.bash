@@ -9,7 +9,7 @@ TEMP_DIR=$(mktemp -d)
 
 echo "Installing dependencies ..."
 sudo apt update
-sudo apt install unzip wget libx11-dev libxcursor-dev \
+sudo apt -y install unzip wget libx11-dev libxcursor-dev \
 	libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev \
 	libfreetype6-dev libssl-dev libudev-dev libxrandr-dev libxi-dev
 

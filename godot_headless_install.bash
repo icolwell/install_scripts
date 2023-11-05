@@ -9,7 +9,7 @@ TEMP_DIR=$(mktemp -d)
 
 echo "Installing dependencies ..."
 sudo apt update
-sudo apt install unzip wget
+sudo apt -y install unzip wget
 
 cd "$TEMP_DIR"
 echo "Downloading Godot Headless version $VERSION ..."
