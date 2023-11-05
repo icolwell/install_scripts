@@ -7,6 +7,12 @@ URL="https://downloads.tuxfamily.org/godotengine/$VERSION/$FILENAME.zip"
 INSTALL_DIR="$HOME/opt/godot-$VERSION"
 TEMP_DIR=$(mktemp -d)
 
+echo "Installing dependencies ..."
+sudo apt update
+sudo apt install unzip wget libx11-dev libxcursor-dev \
+	libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev \
+	libfreetype6-dev libssl-dev libudev-dev libxrandr-dev libxi-dev
+
 cd "$TEMP_DIR"
 echo "Downloading Godot version $VERSION ..."
 wget --quiet --show-progress "$URL" -O godot.zip
