@@ -7,6 +7,10 @@ URL="https://downloads.tuxfamily.org/godotengine/$VERSION/$FILENAME.zip"
 INSTALL_DIR="$HOME/opt/godot-$VERSION"
 TEMP_DIR=$(mktemp -d)
 
+echo "Installing dependencies ..."
+sudo apt update
+sudo apt -y install unzip wget
+
 cd "$TEMP_DIR"
 echo "Downloading Godot Headless version $VERSION ..."
 wget --quiet --show-progress "$URL" -O godot.zip

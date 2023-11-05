@@ -1,13 +1,5 @@
 version: 2
 jobs:
-  bionic_desktop-testing:
-    docker:
-      - image: iancolwell/ubuntu:bionic_desktop
-    steps:
-      - run: sudo apt-get update && sudo apt-get -y install git openssh-client
-      - checkout
-      - run: bash .circleci/ci_test.bash
-
   focal_desktop-testing:
     docker:
       - image: iancolwell/ubuntu:focal_desktop
@@ -28,6 +20,5 @@ workflows:
   version: 2
   ubuntu_testing:
     jobs:
-      - bionic_desktop-testing
       - focal_desktop-testing
       - jammy_desktop-testing
