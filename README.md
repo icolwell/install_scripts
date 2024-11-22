@@ -20,5 +20,5 @@ curl -sSL https://raw.githubusercontent.com/icolwell/install_scripts/master/oper
 
 # CI Testing
 
-The majority of the scripts are tested on Ubuntu 22.04, 20.04, and 18.04.
+The majority of the scripts are tested on Ubuntu 22.04 and 20.04.
 See the `.circleci/ci_test.bash` script for a list of untested scripts.
