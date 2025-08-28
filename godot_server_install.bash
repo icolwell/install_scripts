@@ -1,19 +1,19 @@
 #!/bin/bash
 set -e
 
-VERSION=${1:-'3.3.2'}
+VERSION=${1:-'3.6.1'}
 FILENAME="Godot_v$VERSION-stable_linux_server.64"
-URL="https://downloads.tuxfamily.org/godotengine/$VERSION/$FILENAME.zip"
+URL="https://github.com/godotengine/godot-builds/releases/download/$VERSION-stable/$FILENAME.zip"
 INSTALL_DIR="$HOME/opt/godot-$VERSION"
 TEMP_DIR=$(mktemp -d)
 
 echo "Installing dependencies ..."
 sudo apt update
-sudo apt -y install unzip wget
+sudo apt -y install unzip curl
 
 cd "$TEMP_DIR"
 echo "Downloading Godot Server version $VERSION ..."
-wget --quiet --show-progress "$URL" -O godot.zip
+curl --fail --location --output godot.zip "$URL"
 
 mkdir -p "$INSTALL_DIR"
 mkdir -p "$HOME/bin"
